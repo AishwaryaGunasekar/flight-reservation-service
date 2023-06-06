@@ -10,8 +10,4 @@ public class PassengerDetails {
 		return sb.toString();
 	}
 
-	public void getPassengerDetails() {
-
-	}
-
 }

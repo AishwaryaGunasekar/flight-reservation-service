@@ -1,13 +1,26 @@
 package com.solvd.flightreservation;
 
+import java.io.IOException;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.function.Consumer;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
 import com.solvd.flightreservation.enums.CabinClass;
 import com.solvd.flightreservation.enums.MealType;
 import com.solvd.flightreservation.enums.PaymentMethod;
+import com.solvd.flightreservation.flight.AvailableFlights;
 import com.solvd.flightreservation.flight.FlightDetails;
 import com.solvd.flightreservation.flight.FlightReservation;
 import com.solvd.flightreservation.flight.IFlight;
+import com.solvd.flightreservation.flight.Pilot;
 import com.solvd.flightreservation.flight.SearchFlights;
 import com.solvd.flightreservation.interfaces.BookingConfirmation;
 import com.solvd.flightreservation.interfaces.IFlightSearch;
@@ -16,18 +29,11 @@ import com.solvd.flightreservation.model.Input;
 import com.solvd.flightreservation.model.TicketGenerator;
 import com.solvd.flightreservation.payment.CreditCardPayment;
 import com.solvd.flightreservation.type.BusinessClass;
+import com.solvd.flightreservation.type.BusinessClassReservation;
 import com.solvd.flightreservation.type.EconomyClass;
+import com.solvd.flightreservation.type.EconomyClassReservation;
 import com.solvd.flightreservation.type.ServicesProvided;
 import com.solvd.flightreservation.user.Passenger;
-import java.util.*;
-import java.util.function.Consumer;
-import java.util.function.Predicate;
-import java.util.stream.Collectors;
-import java.io.IOException;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Field;
-import com.solvd.flightreservation.flight.AvailableFlights;
-import com.solvd.flightreservation.flight.Pilot;
 import com.solvd.flightreservation.user.PassengerDetails;
 import com.solvd.flightreservation.utilities.CustomLinkedListImpl;
 
@@ -104,6 +110,10 @@ public class FlightReservationApplication {
 					LOGGER.error(" !! Wrong Entry !! ");
 
 				}
+				
+				//Passenger Details 
+				PassengerDetails pd = new PassengerDetails();
+				pd.getPassengerDetails(passenger);
 
 				// Ticket Generation
 				TicketGenerator ticket = new TicketGenerator();
@@ -118,7 +128,7 @@ public class FlightReservationApplication {
 				LOGGER.info(TicketGenerator.generatedTicket(ticket));
 				LOGGER.info("Thankyou for choosing Fly Easy. Have a Safe Journey !! ");
 
-				TicketGenerator tg= new TicketGenerator();
+				TicketGenerator tg = new TicketGenerator();
 				String reservationCode = tg.generateReservationCode();
 				LOGGER.info("Reservation code: " + reservationCode);
 
@@ -253,14 +263,19 @@ public class FlightReservationApplication {
 			LOGGER.info("Flights with base fare less than 200:");
 			lowFareFlights.forEach(System.out::println);
 		}
+
 		EconomyClass ec = new EconomyClass();
 		ec.displayFlightDetails();
-		BusinessClass bc= new BusinessClass();
+
+		BusinessClass bc = new BusinessClass();
 		bc.displayFlightDetails();
 
-		PassengerDetails pd = new PassengerDetails();
+		BusinessClassReservation bcReservation = new BusinessClassReservation();
+		bcReservation.displayReservationDetails();
 
-		pd.getPassengerDetails();
+		EconomyClassReservation ecReservation = new EconomyClassReservation();
+		ecReservation.displayReservationDetails();
+
 		// Create Flight objects for available flight class to retrieve the pilots for
 		// the created flights
 		AvailableFlights av = new AvailableFlights("F001", "Destination 1");

@@ -128,5 +128,7 @@ public abstract class Flight {
 
 	public abstract void reserveSeats(int numOfPassengers);
 
-	public abstract int getPrice();
+	public abstract int getPrice(int numOfPassengers);
+	
+	
 }

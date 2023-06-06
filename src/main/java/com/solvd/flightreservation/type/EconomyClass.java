@@ -3,9 +3,12 @@ package com.solvd.flightreservation.type;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import com.solvd.flightreservation.constants.CommonConstants;
+import com.solvd.flightreservation.exceptions.ReservationNotFoundException;
 import com.solvd.flightreservation.flight.Flight;
 
-public  class EconomyClass extends Flight {
+public class EconomyClass extends Flight {
 
 	private static final Logger LOGGER = LogManager.getLogger(EconomyClass.class);
 	private double baseFare;
@@ -38,21 +41,28 @@ public  class EconomyClass extends Flight {
 
 	@Override
 	public boolean hasAvailableSeats(int numOfPassengers) {
-		
+         if( numOfPassengers <  CommonConstants.MAX_FLIGHT_CAPACITY) {
+        	 return true;
+         }
 		return false;
 	}
 
 	@Override
 	public void reserveSeats(int numOfPassengers) {
-		
-		
+		Flight flight = new EconomyClass();
+		if (flight.checkAvailability()) {
+			LOGGER.info("Seat booked successfully!");
+
+		} else {
+			LOGGER.info("Sorry, no seats available on this flight");
+
+		}
 	}
 
 	@Override
-	public int getPrice() {
-		
-		return 0;
+	public int getPrice(int numOfPassengers) {
+	
+		return (numOfPassengers * CommonConstants.FLIGHT_BASE_FARE) + CommonConstants.CONVIENCE_FEE ;
 	}
 
-	
 }

@@ -1,12 +1,10 @@
 package com.solvd.flightreservation.flight;
 
 import java.util.ArrayList;
-import java.util.List;
 
-import com.solvd.flightreservation.model.Airlines;
 import com.solvd.flightreservation.type.Reservation;
 
-public class SearchFlights extends Airlines {
+public class SearchFlights  {
 
 	private String flightNumber;
 	private String airline;
@@ -112,20 +110,6 @@ public class SearchFlights extends Airlines {
 
 	public boolean checkAvailability() {
 		return (capacity - bookedSeats) > 0;
-	}
-
-	@Override
-	public List<String> getAirlinesList(com.solvd.flightreservation.flight.SearchFlights flight) {
-		List<String> airlinesList = new ArrayList<>();
-		if ("MAA".equalsIgnoreCase(flight.getSource())) {
-			airlinesList.add("Emirates");
-			airlinesList.add("Delta Air Lines");
-			airlinesList.add("American Airlines");
-			airlinesList.add("United Airlines");
-			airlinesList.add("Southwest Airlines");
-			airlinesList.add("Lufthansa");
-		}
-		return airlinesList;
 	}
 
 	@Override

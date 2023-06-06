@@ -13,6 +13,4 @@ public interface FlightReservation {
 	boolean checkAvailability(FlightDetails flightd, int numOfPassengers);
 
 	boolean reserveFlight(FlightDetails flightd, int numOfPassengers);
-
-	double calculateTotalCost(FlightDetails flightd, int numOfPassengers);
 }

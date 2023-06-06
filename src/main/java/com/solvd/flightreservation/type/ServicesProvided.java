@@ -51,7 +51,7 @@ public class ServicesProvided implements IService
 	public void setClassType(String classType) {
 		this.classType = classType;
 	}
-
+	@Override
 	public List<String> getServices() {
 		if (classType.equalsIgnoreCase(ECONOMY)) {
 			return CommonConstants.ECONOMY_SERVICES;

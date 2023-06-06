@@ -2,6 +2,8 @@ package com.solvd.flightreservation.type;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import com.solvd.flightreservation.constants.CommonConstants;
 import com.solvd.flightreservation.flight.Flight;
 
 public class BusinessClass extends Flight {
@@ -54,20 +56,28 @@ public class BusinessClass extends Flight {
 
 	@Override
 	public boolean hasAvailableSeats(int numOfPassengers) {
-		
+		if (numOfPassengers < CommonConstants.MAX_FLIGHT_CAPACITY) {
+			return true;
+		}
 		return false;
 	}
 
 	@Override
 	public void reserveSeats(int numOfPassengers) {
-		
+		Flight flight = new EconomyClass();
+		if (flight.checkAvailability()) {
+			LOGGER.info("Seat booked successfully!");
 
+		} else {
+			LOGGER.info("Sorry, no seats available on this flight");
+
+		}
 	}
 
 	@Override
-	public int getPrice() {
-	
-		return 0;
+	public int getPrice(int numOfPassengers) {
+
+		return (numOfPassengers * CommonConstants.FLIGHT_BASE_FARE) + CommonConstants.EXTRA_BAGGAGE_CHARGES;
 	}
 
 }

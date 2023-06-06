@@ -32,14 +32,6 @@ public class FlightDetails {
 		this.stops = stops;
 	}
 
-	public int getAvailableseat() {
-		return availableSeat;
-	}
-
-	public void setAvailableseat(int availableseat) {
-		this.availableSeat = availableseat;
-	}
-
 	public String getFlightNo() {
 		return flightNo;
 	}
@@ -96,8 +88,12 @@ public class FlightDetails {
 		this.stops = stops;
 	}
 
-	public static String getCapacity() {
-		return CAPACITY;
+	public int getAvailableSeat() {
+		return availableSeat;
+	}
+
+	public void setAvailableSeat(int availableSeat) {
+		this.availableSeat = availableSeat;
 	}
 
 	public final List<StringBuilder> getFlightDetails(SearchFlights flight, List<FlightDetails> fdList) {
@@ -116,13 +112,6 @@ public class FlightDetails {
 		return sbList;
 	}
 
-	@Override
-	public String toString() {
-		return "FlightDetails [flightNo=" + flightNo + ", flightName=" + flightName + ", source=" + source
-				+ ", destination=" + destination + ", fare=" + fare + ", duration=" + duration + ", stops=" + stops
-				+ "]";
-	}
-
 	public void reserveSeats(int numOfPassengers) {
 
 	}
@@ -136,4 +125,12 @@ public class FlightDetails {
 
 		return fare;
 	}
+
+	@Override
+	public String toString() {
+		return "FlightDetails [flightNo=" + flightNo + ", flightName=" + flightName + ", source=" + source
+				+ ", destination=" + destination + ", fare=" + fare + ", duration=" + duration + ", stops=" + stops
+				+ "]";
+	}
+
 }

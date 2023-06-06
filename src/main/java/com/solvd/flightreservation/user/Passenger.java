@@ -11,9 +11,12 @@ public class Passenger
 	private String gender;
 	private String passportNumber;
 	private String phoneNumber;
+	public MealType mealType;
 
-	public Passenger(String string, MealType vegetarian) {
-
+	public Passenger(String firstName, MealType mealType) {
+		super();
+		this.firstName = firstName;
+		this.mealType = mealType;
 	}
 
 	public Passenger(String firstName, String lastName, int age, String gender, String passportNumber,
@@ -73,12 +76,12 @@ public class Passenger
 		this.passportNumber = passportNumber;
 	}
 
-	public String getphoneNumber() {
+	public String getPhoneNumber() {
 		return phoneNumber;
 	}
 
 	public void setPhoneNumber(String phoneNumber) {
-		phoneNumber = phoneNumber;
+		this.phoneNumber = phoneNumber;
 	}
 
 	@Override

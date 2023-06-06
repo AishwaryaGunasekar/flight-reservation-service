@@ -7,5 +7,5 @@ public interface Calculateprice {
 	
 	double calculateTicketPrice();
 
-	double calculateTotalCost(Flight flight, int numOfPassengers);
+	double calculateTotalCost( int numOfPassengers);
 }
